@@ -16,6 +16,7 @@ class PageRepository extends EntityRepository
         return $this
             ->createQueryBuilder('p')
                 ->where("p.crawledAt IS NULL")
+                // ->addOrderBy('p.depth', 'ASC')
                 ->setMaxResults(1)
                 ->getQuery()
                     ->getOneOrNullResult();
@@ -28,6 +29,7 @@ class PageRepository extends EntityRepository
         return $this
             ->createQueryBuilder('p')
                 ->where("p.crawledAt IS NOT NULL AND p.parsedAt IS NULL")
+                // ->addOrderBy('p.depth', 'ASC')
                 ->setMaxResults(1)
                 ->getQuery()
                     ->getOneOrNullResult();

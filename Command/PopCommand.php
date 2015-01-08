@@ -81,6 +81,10 @@ class PopCommand extends ContainerAwareCommand
             //         ->run(new ArrayInput($input), $output);
             // }
 
+            $output->writeln('');
+
         } while (--$limit > 0);
+
+        $output->writeln('Crawling finished');
     }
 }
