@@ -1,0 +1,27 @@
+{
+    "name": "symfony2bundles/crawler-bundle",
+    "keywords": ["crawling", "symfony2", "symfony", "symfony framework 2", "sf2"],
+    "homepage": "https://github.com/symfony2bundles/crawler-bundle",
+    "require": {
+        "php": ">=5.3.3",
+        "symfony/framework-bundle": "~2.4",
+        "symfony/console": "~2.4",
+        "symfony/dom-crawler": "~2.4",
+        "doctrine/orm": "~2.2,>=2.2.3",
+        "guzzlehttp/guzzle": "~4.0",
+        "sonata-project/easy-extends-bundle": "~2.1"
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Igor Mukhin",
+            "email": "igor.mukhin@gmail.com",
+            "homepage": "http://mukhin.od.ua/",
+            "role": "Developer"
+        }
+    ],
+    "autoload": {
+        "psr-4": { "S2b\\CrawlerBundle\\": "" }
+    },
+    "minimum-stability": "dev"
+}
