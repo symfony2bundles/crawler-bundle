@@ -9,6 +9,7 @@ use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 
 use GuzzleHttp\Client;
+use GuzzleHttp\Exception\ClientException;
 use Symfony\Component\DomCrawler\Crawler;
 
 use S2b\CrawlerBundle\Entity\Page;
@@ -49,7 +50,20 @@ class CrawlCommand extends ContainerAwareCommand
         }
 
         $client = new Client();
-        $response = $client->get($page->getUrl());
+        try {
+            $response = $client->get($page->getUrl());
+        } catch (ClientException $e) {
+            if (404 == $e->getResponse()->getStatusCode()) {
+
+                $output->writeln('<error>Not found ' . $page->getUrl() . '</error>');
+
+                $page->setCrawledAt(new \DateTime());
+                $em->persist($page);
+                $em->flush();
+
+                return;
+            }
+        }
         
         $links = $this->parseLinks((string)$response->getBody(), $page->getUrl());
         $links = $this->filterLinks($links);
