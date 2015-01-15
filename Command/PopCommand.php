@@ -7,6 +7,7 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Input\ArrayInput;
 use Symfony\Component\Console\Output\OutputInterface;
+use Symfony\Component\Filesystem\LockHandler;
 
 class PopCommand extends ContainerAwareCommand
 {
@@ -29,6 +30,13 @@ class PopCommand extends ContainerAwareCommand
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
+        $lockHandler = new LockHandler('crawler-pop.lock');
+        if (!$lockHandler->lock()) {
+            $output->writeln("<error>Crawler already running</error>");
+
+            return 0;
+        }
+
         $em = $this->getContainer()->get('doctrine')->getManager();
         $pageRepository = $this->getContainer()->get('doctrine')
             ->getRepository('S2bCrawlerBundle:Page');
