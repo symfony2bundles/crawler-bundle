@@ -7,7 +7,12 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Page
  *
- * @ORM\Table(name="s2b_crawler_page")
+ * @ORM\Table(
+ *  name="s2b_crawler_page",
+ *  indexes={
+ *      @ORM\Index(name="url_idx", columns={"url"})
+ *  }
+ * )
  * @ORM\Entity(repositoryClass="S2b\CrawlerBundle\Entity\PageRepository")
  * @ORM\HasLifecycleCallbacks()
  */
@@ -25,7 +30,7 @@ class Page
     /**
      * @var string
      *
-     * @ORM\Column(name="url", type="string", length=255)
+     * @ORM\Column(name="url", type="string", length=255, unique=true)
      */
     private $url;
 
