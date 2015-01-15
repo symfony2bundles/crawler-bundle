@@ -44,7 +44,7 @@ class PageCrawled
 
     /**
      * Links to another pages
-     * 
+     *
      * @var array
      *
      * @ORM\Column(name="links", type="array")
@@ -66,11 +66,10 @@ class PageCrawled
         $this->createdAt = new \DateTime();
     }
 
-
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -80,7 +79,7 @@ class PageCrawled
     /**
      * Set headers
      *
-     * @param string $headers
+     * @param  string      $headers
      * @return PageCrawled
      */
     public function setHeaders($headers)
@@ -93,7 +92,7 @@ class PageCrawled
     /**
      * Get headers
      *
-     * @return string 
+     * @return string
      */
     public function getHeaders()
     {
@@ -103,7 +102,7 @@ class PageCrawled
     /**
      * Set content
      *
-     * @param string $content
+     * @param  string      $content
      * @return PageCrawled
      */
     public function setContent($content)
@@ -116,7 +115,7 @@ class PageCrawled
     /**
      * Get content
      *
-     * @return string 
+     * @return string
      */
     public function getContent()
     {
@@ -126,7 +125,7 @@ class PageCrawled
     /**
      * Set links
      *
-     * @param array $links
+     * @param  array       $links
      * @return PageCrawled
      */
     public function setLinks($links)
@@ -139,7 +138,7 @@ class PageCrawled
     /**
      * Get links
      *
-     * @return array 
+     * @return array
      */
     public function getLinks()
     {
@@ -149,7 +148,7 @@ class PageCrawled
     /**
      * Set createdAt
      *
-     * @param \DateTime $createdAt
+     * @param  \DateTime   $createdAt
      * @return PageCrawled
      */
     public function setCreatedAt($createdAt)
@@ -162,7 +161,7 @@ class PageCrawled
     /**
      * Get createdAt
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getCreatedAt()
     {
@@ -172,7 +171,7 @@ class PageCrawled
     /**
      * Set page
      *
-     * @param \S2b\CrawlerBundle\Entity\Page $page
+     * @param  \S2b\CrawlerBundle\Entity\Page $page
      * @return PageCrawled
      */
     public function setPage(\S2b\CrawlerBundle\Entity\Page $page = null)
@@ -185,7 +184,7 @@ class PageCrawled
     /**
      * Get page
      *
-     * @return \S2b\CrawlerBundle\Entity\Page 
+     * @return \S2b\CrawlerBundle\Entity\Page
      */
     public function getPage()
     {

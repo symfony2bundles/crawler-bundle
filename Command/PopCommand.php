@@ -3,7 +3,6 @@
 namespace S2b\CrawlerBundle\Command;
 
 use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
-use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Input\ArrayInput;
@@ -13,7 +12,7 @@ class PopCommand extends ContainerAwareCommand
 {
 
     /**
-     * 
+     *
      */
     protected function configure()
     {
@@ -26,7 +25,7 @@ class PopCommand extends ContainerAwareCommand
     }
 
     /**
-     * 
+     *
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
@@ -45,11 +44,12 @@ class PopCommand extends ContainerAwareCommand
 
             if (!$page) {
                 $output->writeln("<error>Empty queue</error>");
+
                 return;
             }
 
             $output->writeln('Found ' . $page->getUrl());
-            
+
             $input = [
                 'command' => 's2b:crawler:crawl',
                 'id'=>$page->getId(),

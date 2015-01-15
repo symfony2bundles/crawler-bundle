@@ -5,14 +5,15 @@ namespace S2b\CrawlerBundle\Entity;
 use Doctrine\ORM\EntityRepository;
 
 /**
- * 
+ *
  */
 class PageRepository extends EntityRepository
 {
     /**
-     * 
+     *
      */
-    function findOneNotCrawled() {
+    public function findOneNotCrawled()
+    {
         return $this
             ->createQueryBuilder('p')
                 ->where("p.crawledAt IS NULL")
@@ -23,9 +24,10 @@ class PageRepository extends EntityRepository
     }
 
     /**
-     * 
+     *
      */
-    function findOneNotParsed() {
+    public function findOneNotParsed()
+    {
         return $this
             ->createQueryBuilder('p')
                 ->where("p.crawledAt IS NOT NULL AND p.parsedAt IS NULL")
@@ -34,5 +36,5 @@ class PageRepository extends EntityRepository
                 ->getQuery()
                     ->getOneOrNullResult();
     }
-    
+
 }

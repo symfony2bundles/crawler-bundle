@@ -5,13 +5,12 @@ namespace S2b\CrawlerBundle\Command;
 use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
-use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 
 use S2b\CrawlerBundle\Entity\Page;
 
 /**
- * 
+ *
  */
 class AddUrlCommand extends ContainerAwareCommand
 {
@@ -35,12 +34,14 @@ class AddUrlCommand extends ContainerAwareCommand
 
         if (filter_var($url, FILTER_VALIDATE_URL) === FALSE) {
             $output->writeln('<error>Invalid url</error>');
+
             return;
         }
 
         $page = $pageRepository->findOneByUrl($url);
         if ($page) {
             $output->writeln('<error>Url already in database</error>');
+
             return;
         }
 

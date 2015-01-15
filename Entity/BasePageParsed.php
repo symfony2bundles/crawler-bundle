@@ -23,7 +23,7 @@ abstract class BasePageParsed
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {

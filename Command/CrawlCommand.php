@@ -5,7 +5,6 @@ namespace S2b\CrawlerBundle\Command;
 use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
-use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 
 use GuzzleHttp\Client;
@@ -14,10 +13,9 @@ use Symfony\Component\DomCrawler\Crawler;
 
 use S2b\CrawlerBundle\Entity\Page;
 use S2b\CrawlerBundle\Entity\PageCrawled;
-use S2b\CrawlerBundle\Entity\PageParsed;
 
 /**
- * 
+ *
  */
 class CrawlCommand extends ContainerAwareCommand
 {
@@ -41,11 +39,13 @@ class CrawlCommand extends ContainerAwareCommand
 
         if (!$page) {
             $output->writeln("<error>Page not found</error>");
+
             return;
         }
 
         if ($page->isCrawled()) {
             $output->writeln("<error>Page already crawled</error>");
+
             return;
         }
 
@@ -53,7 +53,7 @@ class CrawlCommand extends ContainerAwareCommand
         try {
             $response = $client->get($page->getUrl());
         } catch (ClientException $e) {
-            switch($e->getResponse()->getStatusCode()) {
+            switch ($e->getResponse()->getStatusCode()) {
                 case 404:
                     $output->writeln('<error>Not found ' . $page->getUrl() . '</error>');
 
@@ -69,13 +69,13 @@ class CrawlCommand extends ContainerAwareCommand
             }
         }
 
-        $links = $this->parseLinks((string)$response->getBody(), $page->getUrl());
+        $links = $this->parseLinks((string) $response->getBody(), $page->getUrl());
         $links = $this->filterLinks($links);
 
         $crawled = new PageCrawled();
         $crawled
             ->setPage($page)
-            ->setContent((string)$response->getBody())
+            ->setContent((string) $response->getBody())
             //->setHeaders(...)
             ->setLinks($links)
         ;
@@ -84,7 +84,7 @@ class CrawlCommand extends ContainerAwareCommand
             ->setCrawled($crawled)
             ->setCrawledAt(new \DateTime())
         ;
-        
+
         if ($links) {
             $links_added = 0;
             foreach ($links as $i=>$link) {
@@ -121,9 +121,10 @@ class CrawlCommand extends ContainerAwareCommand
     }
 
     /**
-     * 
+     *
      */
-    protected function isCrawlable($uri) {
+    protected function isCrawlable($uri)
+    {
         if (empty($uri)) {
             return false;
         }
@@ -155,30 +156,33 @@ class CrawlCommand extends ContainerAwareCommand
     }
 
     /**
-     * 
+     *
      */
-    protected function prepareLink ($link) {
+    protected function prepareLink($link)
+    {
         // $link = strtok($link, "#");
         list ($link) = explode('#', $link);
+
         return $link;
     }
 
     /**
-     * 
+     *
      */
-    protected function parseLinks ($html, $baseUrl) {
-        
+    protected function parseLinks($html, $baseUrl)
+    {
         $crawler = new Crawler($html, $baseUrl);
 
-        return $crawler->filter( 'a' )->each( function ( Crawler $node, $i ) {
+        return $crawler->filter( 'a' )->each( function (Crawler $node, $i) {
             return $node->link()->getUri();
         });
     }
 
     /**
-     * 
+     *
      */
-    protected function filterLinks ($links) {
+    protected function filterLinks($links)
+    {
         $result = [];
         foreach ($links as $link) {
             $link = $this->prepareLink($link);

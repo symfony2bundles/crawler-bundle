@@ -43,13 +43,13 @@ class Page
 
     /**
      * Part | List
-     * 
+     *
      * @var string
      *
      * @ORM\Column(name="type", type="string", length=32, nullable=true)
      */
     private $type;
-    
+
     /**
      * @ORM\OneToOne(targetEntity="PageCrawled", mappedBy="page", cascade={"persist"})
      **/
@@ -92,21 +92,23 @@ class Page
     /**
      * Are page already crawled
      */
-    public function isCrawled() {
+    public function isCrawled()
+    {
         return $this->getCrawledAt();
     }
 
     /**
      * Are page already parsed
      */
-    public function isParsed() {
+    public function isParsed()
+    {
         return $this->getParsedAt();
     }
 
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -116,7 +118,7 @@ class Page
     /**
      * Set url
      *
-     * @param string $url
+     * @param  string $url
      * @return Page
      */
     public function setUrl($url)
@@ -129,7 +131,7 @@ class Page
     /**
      * Get url
      *
-     * @return string 
+     * @return string
      */
     public function getUrl()
     {
@@ -139,7 +141,7 @@ class Page
     /**
      * Set type
      *
-     * @param string $type
+     * @param  string $type
      * @return Page
      */
     public function setType($type)
@@ -152,7 +154,7 @@ class Page
     /**
      * Get type
      *
-     * @return string 
+     * @return string
      */
     public function getType()
     {
@@ -162,7 +164,7 @@ class Page
     /**
      * Set createdAt
      *
-     * @param \DateTime $createdAt
+     * @param  \DateTime $createdAt
      * @return Page
      */
     public function setCreatedAt($createdAt)
@@ -175,7 +177,7 @@ class Page
     /**
      * Get createdAt
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getCreatedAt()
     {
@@ -185,7 +187,7 @@ class Page
     /**
      * Set crawled
      *
-     * @param \S2b\CrawlerBundle\Entity\PageCrawled $crawled
+     * @param  \S2b\CrawlerBundle\Entity\PageCrawled $crawled
      * @return Page
      */
     public function setCrawled(\S2b\CrawlerBundle\Entity\PageCrawled $crawled = null)
@@ -198,7 +200,7 @@ class Page
     /**
      * Get crawled
      *
-     * @return \S2b\CrawlerBundle\Entity\PageCrawled 
+     * @return \S2b\CrawlerBundle\Entity\PageCrawled
      */
     public function getCrawled()
     {
@@ -208,7 +210,7 @@ class Page
     /**
      * Set parsed
      *
-     * @param \Application\S2b\CrawlerBundle\Entity\PageParsed $parsed
+     * @param  \Application\S2b\CrawlerBundle\Entity\PageParsed $parsed
      * @return Page
      */
     public function setParsed(\Application\S2b\CrawlerBundle\Entity\PageParsed $parsed = null)
@@ -221,7 +223,7 @@ class Page
     /**
      * Get parsed
      *
-     * @return \Application\S2b\CrawlerBundle\Entity\PageParsed 
+     * @return \Application\S2b\CrawlerBundle\Entity\PageParsed
      */
     public function getParsed()
     {
@@ -231,7 +233,7 @@ class Page
     /**
      * Set depth
      *
-     * @param integer $depth
+     * @param  integer $depth
      * @return Page
      */
     public function setDepth($depth)
@@ -244,7 +246,7 @@ class Page
     /**
      * Get depth
      *
-     * @return integer 
+     * @return integer
      */
     public function getDepth()
     {
@@ -254,7 +256,7 @@ class Page
     /**
      * Set crawledAt
      *
-     * @param \DateTime $crawledAt
+     * @param  \DateTime $crawledAt
      * @return Page
      */
     public function setCrawledAt($crawledAt)
@@ -267,7 +269,7 @@ class Page
     /**
      * Get crawledAt
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getCrawledAt()
     {
@@ -277,7 +279,7 @@ class Page
     /**
      * Set parsedAt
      *
-     * @param \DateTime $parsedAt
+     * @param  \DateTime $parsedAt
      * @return Page
      */
     public function setParsedAt($parsedAt)
@@ -290,7 +292,7 @@ class Page
     /**
      * Get parsedAt
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getParsedAt()
     {
