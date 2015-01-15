@@ -53,18 +53,22 @@ class CrawlCommand extends ContainerAwareCommand
         try {
             $response = $client->get($page->getUrl());
         } catch (ClientException $e) {
-            if (404 == $e->getResponse()->getStatusCode()) {
+            switch($e->getResponse()->getStatusCode()) {
+                case 404:
+                    $output->writeln('<error>Not found ' . $page->getUrl() . '</error>');
 
-                $output->writeln('<error>Not found ' . $page->getUrl() . '</error>');
+                    $page->setCrawledAt(new \DateTime());
+                    $em->persist($page);
+                    $em->flush();
 
-                $page->setCrawledAt(new \DateTime());
-                $em->persist($page);
-                $em->flush();
+                    return;
 
-                return;
+                case 503:
+                    sleep(1);
+                    continue;
             }
         }
-        
+
         $links = $this->parseLinks((string)$response->getBody(), $page->getUrl());
         $links = $this->filterLinks($links);
 
