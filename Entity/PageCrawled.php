@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * PageCrawled
  *
  * @ORM\Table(name="s2b_crawler_page_crawled")
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="\S2b\CrawlerBundle\Entity\PageCrawledRepository")
  * @ORM\HasLifecycleCallbacks()
  */
 class PageCrawled

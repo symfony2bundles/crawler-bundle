@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * BasePageParsed
  *
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="Application\S2b\CrawlerBundle\Entity\PageParsedRepository")
  */
 abstract class BasePageParsed
 {

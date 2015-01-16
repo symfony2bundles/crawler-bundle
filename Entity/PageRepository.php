@@ -12,6 +12,17 @@ class PageRepository extends EntityRepository
     /**
      *
      */
+    public function countPages() {
+        return $this
+            ->createQueryBuilder('p')
+            ->select('count(p.id)')
+                ->getQuery()
+                    ->getSingleScalarResult();
+    }
+
+    /**
+     *
+     */
     public function findOneNotCrawled()
     {
         return $this
