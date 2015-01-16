@@ -37,9 +37,9 @@ class PopCommand extends ContainerAwareCommand
             return 0;
         }
 
-        $em = $this->getContainer()->get('doctrine')->getManager();
-        $pageRepository = $this->getContainer()->get('doctrine')
-            ->getRepository('S2bCrawlerBundle:Page');
+        $doctrine = $this->getContainer()->get('doctrine');
+        $em = $doctrine->getManager();
+        $pageRepository = $doctrine->getRepository('S2bCrawlerBundle:Page');
 
         $limit = $input->getOption('limit');
         // $parse = $input->getOption('parse');

@@ -30,9 +30,9 @@ class CrawlCommand extends ContainerAwareCommand
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $em = $this->getContainer()->get('doctrine')->getManager();
-        $pageRepository = $this->getContainer()->get('doctrine')
-            ->getRepository('S2bCrawlerBundle:Page');
+        $doctrine = $this->getContainer()->get('doctrine');
+        $em = $doctrine->getManager();
+        $pageRepository = $doctrine->getRepository('S2bCrawlerBundle:Page');
 
         $id = $input->getArgument('id');
         $page = $pageRepository->findOneById($id);
